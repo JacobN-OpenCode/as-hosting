@@ -2,6 +2,9 @@ import type { Handle } from '@sveltejs/kit';
 import { validateSession } from '$lib/server/auth/session';
 import { getUserById } from '$lib/server/services/user.service';
 import { SESSION_COOKIE_NAME } from '$lib/constants';
+import { runStartupRecovery } from '$lib/server/startup';
+
+runStartupRecovery().catch(console.error);
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const sessionId = event.cookies.get(SESSION_COOKIE_NAME);

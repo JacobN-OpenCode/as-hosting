@@ -48,7 +48,6 @@ export const deployments = pgTable('deployments', {
 		.notNull()
 		.references(() => websites.id, { onDelete: 'cascade' }),
 	deployedBy: uuid('deployed_by')
-		.notNull()
 		.references(() => users.id),
 	success: boolean('success').notNull(),
 	log: text('log').notNull().default(''),
